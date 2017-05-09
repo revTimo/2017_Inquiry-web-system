@@ -1,5 +1,8 @@
 <?php
 //var_dump($_POST);
+//headerを出したら
+ob_start();
+session_start();
 
 $params = [
 	'email','name','birthday','body'
@@ -31,10 +34,18 @@ if ('' !== $input_data['birthday']) {
 
 }
 
-
+//エラー判定
 if ([] != $error_detail) {
-	echo 'エラーがあったらしい';
-	exit;
+	//error	内容を保存
+	$_SESSION['buffer']['error_detail']=$error_detail;
+	//入力情報をsessionに保存
+	$_SESSION['buffer']['input'] = $input_data;
+	//echo 'エラーがあったらしい';
+	header('Location:./inquiry.php');	
+exit;
 }
-
+//ダミー
 echo 'データのvalidatateはOKでした！！';
+//入力された情報をDBにINSERT
+
+//ありがとうページ
