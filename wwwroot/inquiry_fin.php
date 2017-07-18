@@ -1,9 +1,7 @@
 <?php
 //var_dump($_POST);
 //headerを出したら
-ob_start();
-session_start();
-
+require_once(__DIR__.'/init.php');
 //
 require_once(__DIR__. '/dbh.php');
 
@@ -91,17 +89,9 @@ if (false == $r) {
 	echo "データー取得できませんでした";
 	exit;
 }
-//var_dump($r);
-//ありがとうページ
+
+
+error_reporting(E_ALL & ~E_NOTICE);
+$smarty_obj->display('inquiry_fin.tpl');
+
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>
-		Thank you Man
-	</title>
-</head>
-<body>
-入力ありがとうございます。
-</body>
-</html>
