@@ -46,9 +46,9 @@ foreach ($find_string as $key => $v) {
 		$awk[] = "{$key}=". rawurldecode($find_string[$key]);
 	}
 }
-var_dump($awk);
+//var_dump($awk);
 $uri_params = implode('&', $awk);
-var_dump($uri_params);
+//var_dump($uri_params);
 //一覧をDBから取得して
 $dbh = get_dbh();
 //
@@ -132,7 +132,7 @@ $sql = 'SELECT count(inquiry_id) FROM inquirys;';
 $pre = $dbh->prepare($sql);
 $r = $pre->execute();
 $rec_num = $pre->fetchAll();
-var_dump($rec_num);	
+//var_dump($rec_num);	
 
 //テンプレートにデータを渡す
 $smarty_obj->assign('inquiry_list',$data);
@@ -148,11 +148,11 @@ $r = $pre_count->execute(); //XXXエラーチェック省略
 //レコード数件を取得
 $rec_num = $pre_count->fetchAll();
 $rec_num = $rec_num[0][0];
-var_dump($rec_num);
+//var_dump($rec_num);
 
 //最大Pageの計算
-$max_page_num = celi($rec_num / $per_page);
-var_dump($max_page_num);
+$max_page_num = ceil($rec_num / $per_page);
+//var_dump($max_page_num);
 
 //[前ページ]と「次のページ」のページ数を設定
 $smarty_obj->assign('next_page',$page_num +1);
